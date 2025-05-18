@@ -1,0 +1,72 @@
+public class SimpleCalculator {
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        boolean continueCalculation = true;
+
+	        System.out.println("==== Welcome to Simple Calculator ====");
+
+	        while (continueCalculation) {
+	            System.out.print("Enter first number: ");
+	            double num1 = scanner.nextDouble();
+
+	            System.out.print("Enter second number: ");
+	            double num2 = scanner.nextDouble();
+
+	            System.out.println("Choose an operation:");
+	            System.out.println("1 - Addition (+)");
+	            System.out.println("2 - Subtraction (-)");
+	            System.out.println("3 - Multiplication (*)");
+	            System.out.println("4 - Division (/)");
+
+	            int choice = getValidChoice(scanner);
+
+	            double result;
+	            switch (choice) {
+	                case 1:
+	                    result = num1 + num2;
+	                    System.out.println("Result: " + result);
+	                    break;
+	                case 2:
+	                    result = num1 - num2;
+	                    System.out.println("Result: " + result);
+	                    break;
+	                case 3:
+	                    result = num1 * num2;
+	                    System.out.println("Result: " + result);
+	                    break;
+	                case 4:
+	                    if (num2 == 0) {
+	                        System.out.println("Error: Cannot divide by zero!");
+	                    } else {
+	                        result = num1 / num2;
+	                        System.out.println("Result: " + result);
+	                    }
+	                    break;
+	                default:
+	                    System.out.println("Invalid operation.");
+	            }
+
+	            System.out.print("Do you want to perform another calculation? (yes/no): ");
+	            continueCalculation = scanner.next().equalsIgnoreCase("yes");
+	        }
+
+	        System.out.println("Thank you for using the calculator!");
+	        scanner.close();
+	    }
+
+	    private static int getValidChoice(Scanner scanner) {
+	        int choice = -1;
+	        while (true) {
+	            if (scanner.hasNextInt()) {
+	                choice = scanner.nextInt();
+	                if (choice >= 1 && choice <= 4) {
+	                    return choice;
+	                }
+	            } else {
+	                scanner.next();
+	            }
+	            System.out.print("Invalid choice. Enter 1, 2, 3, or 4: ");
+	        }
+	    }
+}
